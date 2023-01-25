@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+{% load static %}
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Raychem RPG</title>
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
+
+    <!--Font Link-->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@800&display=swap" rel="stylesheet"> -->
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'fontawesome-free/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="{% static 'css/icheck-bootstrap.min.css' %}">
+    <!--  style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+{% load static %}
+
+<body class="hold-transition sidebar-mini">
+
+    
+    <div class="sidenav">
+        <!-- <img src="{% static 'img/login_bg.jpg' %}" alt="User Avatar" class=""> -->
+    </div>
+    <div class="main">
+
+        <div class="login-form loginInfo">
+            <div class="login"> <img src="{% static 'img/login_logo.png' %}" alt="User Avatar" class="logInLogo"> </div>
+            <h1>Login</h1>
+            <form  action="" method="POST">
+                {% csrf_token %}
+                {% load static %}
+                <div class="form-group">
+
+                    <input  id ="username" type="text" name="username" username class="form-control" placeholder="User Name">
+                </div>
+                <div class="form-group">
+
+                    <input id ="password" type="password" name="password" class="form-control" placeholder="Password">
+                </div>
+
+                <div class="form-group clearfix">
+                    <div class="icheck-primary d-inline">
+                        <input type="radio" id="radioPrimary1" name="r1" checked>
+                        <label for="radioPrimary1">Operator
+</label>
+                    </div>
+                    <div class="icheck-primary d-inline">
+                        <input type="radio" id="radioPrimary2" name="r1">
+                        <label for="radioPrimary2">Admin
+</label>
+                    </div>
+
+                </div>
+                <button type="submit" class=" btn btn-primary btn-lg btn-block">ENTER</button>
+
+            </form>
+        </div>
+        <div class="designName">Design and Developed by Insightzz</div>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'js/adminlte.min.js' %}"></script>
+
+
+    <!--comment y deepak--> 
+    <!-- <script type = "text/javascript" >
+        function loginFunction() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+        if(user == "insightzz" && pass == "insightzz123") {
+            alert("Succesfully Logged In !");
+            // window.open("/home/karthik/Ravan_Django/Ravan_UI/RavantApp/templates/html_tags/users.html")
+            // locate="RavanApp/templates/html_tags/users.html"
+           window.location.assign("http://127.0.0.1:8000/users/")
+            return false;
+        } else {
+            alert("Please Enter a Valid User Details");
+            return false;
+            }
+        }
+        </script> -->
+           
+
+
+    <!-- <script>
+    function loginFunction() {
+        //alert("inside loginFunction");s
+        $.ajax({
+		        url: "http://localhost:8080/RRLZeroing/LoginController?apiName=loginRequest",
+	          type:"post",
+            success: function(response){
+              // Do operation what you want to do
+
+
+              
+
+              alert(response);
+            },
+	          error: function( jqXhr, textStatus, errorThrown ){
+	    	         alert(errorThrown);
+                 alert(textStatus);
+	               console.log( errorThrown );
+	          }
+	       });
+      }
+    </script> -->
+</body>
+</html>

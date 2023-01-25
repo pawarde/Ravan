@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+{% load static %}
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Raychem RPG</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'fontawesome-free/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href= "{% static 'css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!--  style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+{% load static %}
+
+<body class="hold-transition sidebar-mini">
+    <form action="POST">
+   
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+
+            </ul>
+
+
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto userInfo">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <div class="user-panel  d-flex">
+                        <div class="image">
+                            <img src="{% static 'img/avatar2.png' %}" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">{{user_name}}
+                                <span>Shift 1 </span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="{% url 'logout' %}" class="logOut"><i class="fas fa-power-off" ></i></a></li>
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="{% static 'img/header_logo.png' %}" alt=" Logo" class="brand-image  ">
+                <img src="{% static 'img/header_logo_small.png' %}" alt=" Logo" class="brand-image logoSmall ">
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                  
+
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+                        <li class="nav-item">
+                            <a href="users.html" class="nav-link ">
+                                <i class="nav-icon ">                                    
+                                    <img src="img/user_b.png" alt="">
+                                    <img src="img/user_w.png" alt="">
+                                </i>
+                                <p>
+                                    Users
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="machines.html" class="nav-link active">
+                                <i class="nav-icon ">                                    
+                                    <img src="img/machines_b.png" alt="">
+                                    <img src="img/machines_w.png" alt="">
+                                </i>
+                                <p>
+                                    MachineVision_Camera
+
+                                </p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="machines.html " class="nav-link active">
+                                <i class="nav-icon ">                                    
+                                    <img src=" img/machines_b.png " alt="">
+                                    <img src=" img/machines_w.png " alt="">
+                                </i>
+                                <p>
+                                    IP_Camera
+
+                                </p>
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a href="report.html" class="nav-link">
+                                <i class="nav-icon ">                                    
+                                    <img src="img/report_b.png" alt="">
+                                    <img src="img/report_w.png" alt="">
+                                </i>
+                                <p>
+                                    IP_Camera
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="image_tagging.html" class="nav-link">
+                                <i class="nav-icon ">                                    
+                                    <img src="img/img_tag_b.png" alt="">
+                                    <img src="img/img_tag_w.png" alt="">
+                                </i>
+                                <p>
+                                    Download_Image
+
+                                </p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="searching_meter.html" class="nav-link">
+                                <i class="nav-icon ">                                    
+                                    <img src="img/search_b.png" alt="">
+                                    <img src="img/search_w.png" alt="">
+                                </i>
+                                <p>
+                                    Searching Meter
+
+                                </p>
+                            </a>
+                        </li> -->
+
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Machines</h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'add_machine' %}" type="submit" class=" btn btnRound btn-primary btn-lg btn-block"> <i class="nav-icon fas fa-plus"></i> Add Machines</a>
+                                </li>
+
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+           
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas  fa-search"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control searchInput"  name="searchInput" id="searchInput" onkeyup=search()  placeholder="Search by name & username">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="card-tools ">
+                                                <ul class="nav nav-pills ml-auto pull-right">
+                                                    <li class="nav-item">
+                                                        <span class="filterTitel">Filter by</span>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <select name="potencial" id="potencial" class="custom-select sources" placeholder="Configuration">
+                                                            <option value="DH" selected>Configuration</option>
+                                                                                                                  
+                                                          
+                                                          </select>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <select name="potencial" id="potencial" class="custom-select sources" placeholder="Status">
+                                                            <option value="DH" selected>Status</option>
+                                                            <option value="A">Status 
+                                                                </option>
+                                                            <option value="B">Status</option>
+                                                          
+                                                          </select>
+
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body p-0">
+                                    <table class="table ">
+                                            <tr>
+                                                <th>Machine Name</th>
+                                                <th>Camera ID</th>
+                                                <th>Defect Image</th>
+                                                <th>Download Image</th>
+                                                <th>Camera Status</th>
+                                                <th>Action</th> 
+                                            </tr>
+                                        <tbody>
+                                                {% for cam in machines %}
+                                            <tr>
+                                                <td>{{ cam.machine_name  }}</td>
+                                                <td>{{ cam.camera_id }} </td>
+                                                <td>{{ cam.defect_image  }}</td>
+                                                <td>{{ cam.download_image  }}</td>
+                                                <td>{{ cam.camera_status }}</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" class="custom-control-input" id="customSwitch7">
+                                                            <label class="custom-control-label" for="customSwitch7"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><button type="button" class="btn  btn-sm btn-default"><i class="fas fa-pencil-alt" ></i> &nbsp; Edit</button></td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+
+                            </div>
+
+
+                            <!-- /.card -->
+                            <div class="row">
+                                <div class="col-sm-6">Showig 1 to 20 of 60 users </div>
+                                <div class="col-sm-6">
+                                    <ul class="pagination  float-right">
+                                        <li class="page-item"><a class="page-link " href="#"><i class="fas fa-angle-left"></i></a></li>
+                                        <li class="page-item"><a class="page-link act" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right" ></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.col-md-6 -->
+
+                        <!-- /.col-md-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Design and Developed by Insightzz
+            </div>
+            <!-- Default to the left -->
+
+        </footer>
+    </div>
+
+    <!-- add modal -->
+
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="exampleInputPassword1" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group popUpSelect">
+                                <select name="potencial" id="potencial" class="custom-select sources" placeholder="Role">
+                                    <option value="DH" selected>Role</option>
+                                    <option value="A">Operator
+                                        </option>
+                                    <option value="B">Admin</option>
+                                  
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="exampleInputPassword1" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+
+                    <button type="button" class=" btn  btn-primary btn-lg ">Add</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- edit modal -->
+
+    <div class="modal fade" id="modal-edit">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="exampleInputPassword1" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group popUpSelect">
+                                <select name="potencial" id="potencial" class="custom-select sources" placeholder="Role">
+                                    <option value="DH" selected>Role</option>
+                                    <option value="A">Operator
+                                        </option>
+                                    <option value="B">Admin</option>
+                                  
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="exampleInputPassword1" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+
+                    <button type="button" class=" btn  btn-primary btn-lg ">Add</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'js/adminlte.min.js' % }"></script>
+    <script>
+        // $(".custom-select").each(function() {
+        //     var classes = $(this).attr("class"),
+        //         id = $(this).attr("id"),
+        //         name = $(this).attr("name");
+        //     var template = '<div class="' + classes + '">';
+            // template +=
+            //     '<span class="custom-select-trigger">' +
+            //     $(this).attr("placeholder") +
+            //     "</span>";
+            // template += '<div class="custom-options">';
+            // $(this)
+            //     .find("option")
+            //     .each(function() {
+            //         template +=
+            //             '<span class="custom-option ' +
+            //             $(this).attr("class") +
+            //             '" data-value="' +
+            //             $(this).attr("value") +
+            //             '">' +
+            //             $(this).html() +
+            //             "</span>";
+        //         });
+        //     template += "</div></div>";
+
+        //     $(this).wrap('<div class="custom-select-wrapper"></div>');
+        //     $(this).hide();
+        //     $(this).after(template);
+        // });
+        // $(".custom-option:first-of-type").hover(
+        //     function() {
+        //         $(this)
+        //             .parents(".custom-options")
+        //             .addClass("option-hover");
+        //     },
+        //     function() {
+        //         $(this)
+        //             .parents(".custom-options")
+        //             .removeClass("option-hover");
+        //     }
+        // );
+        // $(".custom-select-trigger").on("click", function() {
+        //     $("html").one("click", function() {
+        //         $(".custom-select").removeClass("opened");
+        //     });
+        //     $(this)
+        //         .parents(".custom-select")
+        //         .toggleClass("opened");
+        //     event.stopPropagation();
+        // });
+    //     $(".custom-option").on("click", function() {
+    //         $(this)
+    //             .parents(".custom-select-wrapper")
+    //             .find("select")
+    //             .val($(this).data("value"));
+    //         $(this)
+    //             .parents(".custom-options")
+    //             .find(".custom-option")
+    //             .removeClass("selection");
+    //         $(this).addClass("selection");
+    //         $(this)
+    //             .parents(".custom-select")
+    //             .removeClass("opened");
+    //         $(this)
+    //             .parents(".custom-select")
+    //             .find(".custom-select-trigger")
+    //             .text($(this).text());
+    //     });
+
+
+    function search() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }
+        }
+        }
+    // </script>
+    
+</body>
+
+</html>
