@@ -4,7 +4,7 @@ import mysql.connector as sql
 from django.contrib import messages
 from django.http import HttpResponse
 from .models import LoginDetails,MachinevisionCamera
-from .filters import machineFilter
+
 
 
 # from .forms import UserRegisterForm
@@ -21,15 +21,15 @@ from .filters import machineFilter
 
 def home(request):
     context={
-        'machines':machines,"user_name":user_name
+        "user_name":user_name
     }
     return render(request, 'html_tags/login.html',context)
 
 user_name=''
 password=''
-machine_name=''
+user_type=''
 def login_page(request):
-    global user_name,password
+    global user_name,password,user_type
     if request.method =="POST":
         m=sql.connect(host="localhost",user="root",password="insightzz123",database='ravandata')
         cursor=m.cursor()
@@ -40,25 +40,22 @@ def login_page(request):
                 user_name=value
             if key=="password":
                 password=value
-        print("username",user_name,"password",password)
-        c="SELECT * FROM ravandata.login_Details where User_name='{}' and Password='{}'".format(user_name,password)
-        
+            if key == "r1":
+                user_type=value
+        print("username",user_name,"password",password,"usertype",user_type)
+        c="SELECT * FROM ravandata.login_Details where User_name='{}' and Password='{}' and user_type='{}'".format(user_name,password,user_type)
         cursor.execute(c)
         t=tuple(cursor.fetchall())
         if t==():
             # return render(request,'html_tags/report.html')
             return HttpResponse(" Please Enter Valid User Details ")
         else:
-            # return render(request,'html_tags/users.html')
-            response=redirect('/users/')
-            return response
-            
-            
+            if user_type == "Admin":
+                response=redirect('/users/')
+            elif user_type =="Operator":
+                return HttpResponse("You enter in operator Page")
+        return response
     return render(request,'html_tags/login.html')
-
-       
-
-    
 
 def users(request):
     login=LoginDetails.objects.all()
@@ -67,28 +64,15 @@ def users(request):
     }      
     return render(request, 'html_tags/users.html',context)
 
-# def MachineVision(request):
-#     m=sql.connect(host="localhost",user="root",password="insightzz123",database='ravandata')
-#     cursor=m.cursor()
-#     c="select * from MachineVision_Camera;"
-#     cursor.execute(c)
-#     machine=cursor.fetchall()
-#     context={
-#             'machine':machine
-#     }
-#     print(context)
-#     return render(request, 'html_tags/machines.html',context)  
-
 def MachineVision(request):
     machines =MachinevisionCamera.objects.all()
+    print(machines)
     machinecount=machines.count()
     print("machinecourn",machinecount)
     context={
         'machines':machines,"user_name":user_name
     }
     return render(request, 'html_tags/machines.html',context )  
-
-
 
 def add_machine(request):
     return render(request,'html_tags/add_machines.html')

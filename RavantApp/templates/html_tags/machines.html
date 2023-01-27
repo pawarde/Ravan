@@ -25,8 +25,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {% load static %}
 
 <body class="hold-transition sidebar-mini">
-    <form action="POST">
-   
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -56,12 +54,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </li>
-                <li><a href="{% url 'logout' %}" class="logOut"><i class="fas fa-power-off" ></i></a></li>
+                <li><a  href="{% url 'logout' %}"class="logOut"><i class="fas fa-power-off" ></i></a></li>
 
             </ul>
         </nav>
-        <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -202,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas  fa-search"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control searchInput"  name="searchInput" id="searchInput" onkeyup=search()  placeholder="Search by name & username">
+                                                <input type="text" class="form-control searchField"  name="searchField" id="searchField"  placeholder="Search by name & username">
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
@@ -430,97 +426,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="{% static 'js/adminlte.min.js' % }"></script>
     <script>
-        // $(".custom-select").each(function() {
-        //     var classes = $(this).attr("class"),
-        //         id = $(this).attr("id"),
-        //         name = $(this).attr("name");
-        //     var template = '<div class="' + classes + '">';
-            // template +=
-            //     '<span class="custom-select-trigger">' +
-            //     $(this).attr("placeholder") +
-            //     "</span>";
-            // template += '<div class="custom-options">';
-            // $(this)
-            //     .find("option")
-            //     .each(function() {
-            //         template +=
-            //             '<span class="custom-option ' +
-            //             $(this).attr("class") +
-            //             '" data-value="' +
-            //             $(this).attr("value") +
-            //             '">' +
-            //             $(this).html() +
-            //             "</span>";
-        //         });
-        //     template += "</div></div>";
-
-        //     $(this).wrap('<div class="custom-select-wrapper"></div>');
-        //     $(this).hide();
-        //     $(this).after(template);
-        // });
-        // $(".custom-option:first-of-type").hover(
-        //     function() {
-        //         $(this)
-        //             .parents(".custom-options")
-        //             .addClass("option-hover");
-        //     },
-        //     function() {
-        //         $(this)
-        //             .parents(".custom-options")
-        //             .removeClass("option-hover");
-        //     }
-        // );
-        // $(".custom-select-trigger").on("click", function() {
-        //     $("html").one("click", function() {
-        //         $(".custom-select").removeClass("opened");
-        //     });
-        //     $(this)
-        //         .parents(".custom-select")
-        //         .toggleClass("opened");
-        //     event.stopPropagation();
-        // });
-    //     $(".custom-option").on("click", function() {
-    //         $(this)
-    //             .parents(".custom-select-wrapper")
-    //             .find("select")
-    //             .val($(this).data("value"));
-    //         $(this)
-    //             .parents(".custom-options")
-    //             .find(".custom-option")
-    //             .removeClass("selection");
-    //         $(this).addClass("selection");
-    //         $(this)
-    //             .parents(".custom-select")
-    //             .removeClass("opened");
-    //         $(this)
-    //             .parents(".custom-select")
-    //             .find(".custom-select-trigger")
-    //             .text($(this).text());
-    //     });
-
-
-    function search() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("searchInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("table");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
+        document .querySelector(".searchField") .addEventListener("keyup", searchFunction);
+        function searchFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.querySelector(".searchField");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    } else {
+                    tr[i].style.display = "none";
+                    }
+                }
             }
         }
-        }
-    // </script>
+    </script>
     
 </body>
 

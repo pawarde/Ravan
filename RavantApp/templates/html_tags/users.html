@@ -215,16 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                           
                                                           </select>
                                                     </li>
-                                                    <li class="nav-item">
-                                                        <select name="potencial" id="potencial" class="custom-select sources" placeholder="Status">
-                                                            <option value="DH" selected>Status</option>
-                                                            <option value="A">Status 
-                                                                </option>
-                                                            <option value="B">Status</option>
-                                                          
-                                                          </select>
-
-                                                    </li>
+                                               
 
                                                 </ul>
                                             </div>
@@ -559,95 +550,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="{% static 'js/adminlte.min.js' %}"></script>
     <script>
-        function search() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("searchInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("table");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
+        document .querySelector(".searchInput") .addEventListener("keyup", searchFunction);
+        function searchFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.querySelector(".searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    } else {
+                    tr[i].style.display = "none";
+                    }
+                }
             }
         }
-        }
-
-        // $(".custom-select").each(function() {
-        //     var classes = $(this).attr("class"),
-        //         id = $(this).attr("id"),
-        //         name = $(this).attr("name");
-        //     var template = '<div class="' + classes + '">';
-        //     template +=
-        //         '<span class="custom-select-trigger">' +
-        //         $(this).attr("placeholder") +
-        //         "</span>";
-        //     template += '<div class="custom-options">';
-        //     $(this)
-        //         .find("option")
-            //     .each(function() {
-            //         template +=
-            //             '<span class="custom-option ' +
-            //             $(this).attr("class") +
-            //             '" data-value="' +
-            //             $(this).attr("value") +
-            //             '">' +
-            //             $(this).html() +
-            //             "</span>";
-            //     });
-            // template += "</div></div>";
-
-            // $(this).wrap('<div class="custom-select-wrapper"></div>');
-        //     $(this).hide();
-        //     $(this).after(template);
-        // });
-        // $(".custom-option:first-of-type").hover(
-        //     function() {
-        //         $(this)
-        //             .parents(".custom-options")
-        //             .addClass("option-hover");
-        //     },
-        //     function() {
-        //         $(this)
-        //             .parents(".custom-options")
-        //             .removeClass("option-hover");
-        //     }
-        // );
-        // $(".custom-select-trigger").on("click", function() {
-        //     $("html").one("click", function() {
-        //         $(".custom-select").removeClass("opened");
-        //     });
-        //     $(this)
-        //         .parents(".custom-select")
-        //         .toggleClass("opened");
-        //     event.stopPropagation();
-        // });
-        // $(".custom-option").on("click", function() {
-        //     $(this)
-        //         .parents(".custom-select-wrapper")
-        //         .find("select")
-        //         .val($(this).data("value"));
-        //     $(this)
-        //         .parents(".custom-options")
-        //         .find(".custom-option")
-        //         .removeClass("selection");
-        //     $(this).addClass("selection");
-        //     $(this)
-        //         .parents(".custom-select")
-        //         .removeClass("opened");
-        //     $(this)
-        //         .parents(".custom-select")
-        //         .find(".custom-select-trigger")
-        //         .text($(this).text());
-        // });
     </script>
 </body>
 

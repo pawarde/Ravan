@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+   * {
+      box-sizing: border-box;
+   }
+   .searchField {
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+   }
+   .birthDayTable {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 18px;
+   }
+   .birthDayTable th, .birthDayTable td {
+      text-align: left;
+      padding: 12px;
+   }
+   .birthDayTable tr {
+      border-bottom: 4px solid #ddd;
+   }
+   .birthDayTable tr.header, .birthDayTable tr:hover {
+      background-color: #f1f1f1;
+   }
+</style>
+</head>
+<body>
+<h1>Filter table example</h1>
+<input type="text" class="searchField" placeholder="Friend Name:" />
+<table class="birthDayTable">
+        <tr>
+            <th>Machine Name</th>
+            <th>Camera ID</th>
+            <th>Defect Image</th>
+            <th>Download Image</th>
+            <th>Camera Status</th>
+            <th>Action</th> 
+        </tr>
+    <tbody>
+            {% for cam in machines %}
+        <tr>
+            <td>{{ cam.machine_name  }}</td>
+            <td>{{ cam.camera_id }} </td>
+            <td>{{ cam.defect_image  }}</td>
+            <td>{{ cam.download_image  }}</td>
+            <td>{{ cam.camera_status }}</td>
+            <td>
+                <div class="form-group">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch7">
+                        <label class="custom-control-label" for="customSwitch7"></label>
+                    </div>
+                </div>
+            </td>
+            <td><button type="button" class="btn  btn-sm btn-default"><i class="fas fa-pencil-alt" ></i> &nbsp; Edit</button></td>
+        </tr>
+       
+    </tbody>
+    {% endfor %}
+</table>
+<script>
+   document .querySelector(".searchField") .addEventListener("keyup", searchFunction);
+   function searchFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.querySelector(".searchField");
+      filter = input.value.toUpperCase();
+      table = document.querySelector(".birthDayTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[0];
+         if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+               tr[i].style.display = "";
+            } else {
+               tr[i].style.display = "none";
+            }
+         }
+      }
+   }
+</script>
+</body>
+</html>
